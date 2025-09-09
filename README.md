@@ -1,63 +1,163 @@
-# Pioneer Timer
+# Pioneer Timer - Licznik godzin służby pioniera
 
-Aplikacja webowa do śledzenia godzin służby pionierskiej z lokalnym przechowywaniem danych.
+Aplikacja Angular TypeScript do śledzenia godzin służby pioniera z trwałym przechowywaniem danych w przeglądarce.
 
-## Funkcjonalności
+## ✨ Funkcjonalności
 
-### 🕐 Wprowadzanie godzin
-- Intuicyjny kalendarz do wyboru daty
-- Wprowadzanie liczby godzin z obsługą ułamków (0.5h)
-- Opcjonalne notatki do każdego wpisu
-- Lista ostatnich wpisów z opcją edycji i usuwania
+- **📝 Wprowadzanie godzin**: Dodawanie wpisów godzin służby z datą, typem i notatkami
+- **📊 Statystyki**: Podgląd statystyk miesięcznych i rocznych z wykresami
+- **⚙️ Ustawienia**: Konfiguracja celu godzinowego i typów godzin
+- **💾 Trwałe przechowywanie**: Dane zapisywane lokalnie w IndexedDB przy użyciu Dexie.js
+- **📤📥 Import/Export**: Możliwość kopii zapasowej i przywracania danych
+- **📱 Responsywność**: Działa na urządzeniach mobilnych i desktopowych
 
-### 📊 Statystyki
-- Podsumowanie godzin dla bieżącego roku i miesiąca
-- Wizualny pasek postępu względem celu rocznego
-- Wykres miesięczny pokazujący rozkład godzin
-- Automatyczne obliczanie pozostałych godzin do celu
+## 🚀 Technologie
 
-### ⚙️ Ustawienia
-- Konfigurowalny cel godzinowy na rok (domyślnie 840h)
-- Ustawienie domyślnej liczby godzin
-- Opcje powiadomień
-- Eksport/import danych w formacie JSON
-- Możliwość wyczyszczenia wszystkich danych
+- **Angular 19** - Najnowszy framework frontendowy
+- **TypeScript 5.6** - Typowany JavaScript
+- **Dexie.js 4.0** - Zaawansowana biblioteka do zarządzania IndexedDB
+- **SCSS** - Zaawansowane stylowanie
+- **RxJS** - Reaktywne programowanie
 
-## Technologie
+## 🛠️ Instalacja i uruchomienie
 
-- **HTML5** - struktura aplikacji
-- **CSS3** - responsywny design z gradientami i animacjami
-- **JavaScript ES6+** - logika aplikacji i zarządzanie stanem
-- **Local Storage** - przechowywanie danych lokalnie w przeglądarce
+### Wymagania
+- Node.js (wersja 18 lub nowsza)
+- npm
 
-## Instalacja i uruchomienie
+### Kroki instalacji
 
-1. Sklonuj repozytorium
-2. Otwórz `index.html` w przeglądarce lub uruchom lokalny serwer:
+1. **Sklonuj repozytorium**:
    ```bash
-   python3 -m http.server 8000
+   git clone https://github.com/majkel1024/pioneer-timer.git
+   cd pioneer-timer
    ```
-3. Przejdź do `http://localhost:8000`
 
-## Cechy aplikacji
+2. **Zainstaluj zależności**:
+   ```bash
+   npm install
+   ```
 
-- ✅ **Zero backend** - wszystko działa lokalnie w przeglądarce
-- ✅ **Offline-first** - brak wymagania połączenia z internetem
-- ✅ **Responsywny design** - działa na telefonach i komputerach
-- ✅ **Intuicyjny interfejs** - po polsku, łatwy w obsłudze
-- ✅ **Bezpieczny** - dane pozostają lokalnie na urządzeniu
-- ✅ **Szybki** - natychmiastowe ładowanie i reakcje
+3. **Uruchom aplikację w trybie developerskim**:
+   ```bash
+   npm start
+   ```
+   Aplikacja będzie dostępna pod adresem `http://localhost:4200`
 
-## Struktura plików
+4. **Zbuduj aplikację do produkcji**:
+   ```bash
+   npm run build
+   ```
+   Pliki produkcyjne znajdą się w folderze `dist/`
+
+## 📋 Komendy NPM
+
+- `npm start` - Uruchomienie serwera developerskiego
+- `npm run build` - Budowanie aplikacji do produkcji
+- `npm run watch` - Budowanie z obserwowaniem zmian
+- `npm test` - Uruchomienie testów jednostkowych
+- `npm run lint` - Sprawdzenie jakości kodu
+
+## 📁 Struktura projektu
 
 ```
-pioneer-timer/
-├── index.html          # Główna struktura aplikacji
-├── styles.css          # Style i responsywny design
-├── script.js           # Logika aplikacji
-└── README.md          # Dokumentacja
+src/
+├── app/
+│   ├── components/           # Komponenty UI
+│   │   ├── input.component.ts
+│   │   ├── statistics.component.ts
+│   │   └── settings.component.ts
+│   ├── services/            # Serwisy biznesowe
+│   │   ├── database.service.ts
+│   │   └── pioneer-timer.service.ts
+│   ├── models/              # Modele TypeScript
+│   │   └── index.ts
+│   └── app.component.ts     # Główny komponent
+├── assets/                  # Zasoby statyczne
+├── index.html              # Główny plik HTML
+├── main.ts                 # Bootstrap aplikacji
+└── styles.scss             # Globalne style
 ```
 
-## Backup danych
+## 💾 Przechowywanie danych
 
-Aplikacja oferuje funkcję eksportu danych do pliku JSON, który można zaimportować w przypadku potrzeby przywrócenia danych lub przeniesienia na inne urządzenie.
+Aplikacja używa **IndexedDB** do lokalnego przechowywania danych w przeglądarce:
+
+- **Tabela `entries`**: Wpisy godzin służby
+- **Tabela `settings`**: Ustawienia aplikacji i typy godzin
+
+Dane są automatycznie synchronizowane i dostępne offline. Można je eksportować do pliku JSON i importować z powrotem.
+
+## 📖 Funkcjonalności główne
+
+### 1. 📝 Wprowadzanie godzin
+- Wybór daty
+- Wybór typu godzin (Służba, inne typy)
+- Wprowadzanie czasu w formacie godziny:minuty
+- Opcjonalne notatki
+- Historia ostatnich wpisów z możliwością edycji
+
+### 2. 📊 Statystyki
+- Podsumowanie bieżącego miesiąca
+- Podsumowanie roku służbowego (wrzesień-sierpień)
+- Postęp względem celu rocznego
+- Wymagania dzienne do osiągnięcia celów
+- Wykres miesięczny z podziałem na typy godzin
+
+### 3. ⚙️ Ustawienia
+- Konfiguracja celu godzinowego (domyślnie 600h)
+- Zarządzanie typami godzin (do 5 dodatkowych typów)
+- Export/import danych w formacie JSON
+- Czyszczenie wszystkich danych
+
+## 📅 Rok służbowy
+
+Aplikacja operuje na roku służbowym od **1 września** do **31 sierpnia** następnego roku, zgodnie ze standardami pionierów.
+
+## ⏰ Limity godzin
+
+- **Służba**: Bez limitu miesięcznego - wszystkie godziny liczą się do statystyk
+- **Inne typy**: Maksymalnie **55 godzin miesięcznie** liczą się do statystyk
+
+## 🌐 Wsparcie przeglądarek
+
+Aplikacja działa na wszystkich nowoczesnych przeglądarkach obsługujących:
+- ES2022
+- IndexedDB
+- Service Workers (przyszła funkcjonalność PWA)
+
+## 🔒 Bezpieczeństwo
+
+✅ **Wszystkie podatności bezpieczeństwa zostały usunięte**
+- Zaktualizowane do najnowszych wersji Angular 19
+- Usunięte przestarzałe zależności
+- Brak znanych luk bezpieczeństwa
+
+## 🚀 Przyszły rozwój
+
+Aplikacja jest przygotowana do rozszerzenia o:
+- 📱 Progressive Web App (PWA)
+- 🔔 Powiadomienia push
+- ☁️ Synchronizację w chmurze
+- 📈 Dodatkowe wykresy i statystyki
+- 📄 Raporty PDF
+- 🌍 Tryb offline
+
+## 🛡️ Stan bezpieczeństwa
+
+```
+npm audit
+found 0 vulnerabilities
+```
+
+## 📄 Licencja
+
+Projekt udostępniony na licencji MIT.
+
+## 🤝 Wkład w rozwój
+
+Zapraszamy do współtworzenia projektu! Sprawdź nasze issues i prześlij pull request.
+
+---
+
+**Pioneer Timer** - Nowoczesne narzędzie do śledzenia godzin służby pionierskiej z wykorzystaniem najnowszych technologii webowych.
