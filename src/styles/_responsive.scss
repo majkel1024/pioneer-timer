@@ -99,36 +99,39 @@
         grid-template-columns: 1fr;
     }
     
-    /* Vertical navigation for very small screens */
+    /* Keep horizontal navigation even on small screens */
     .navigation {
-        flex-direction: column;
+        flex-direction: row;
         border-radius: var(--radius-md);
         margin-bottom: var(--spacing-md);
+        overflow: hidden;
     }
     
     .nav-btn {
-        border-bottom: 1px solid var(--sage-green-light);
+        border-right: 1px solid var(--sage-green-light);
         border-radius: 0;
-        padding: var(--spacing-md) var(--spacing-lg);
+        padding: var(--spacing-sm) 2px;
         min-height: 44px;
-        font-size: var(--font-size-base);
-        white-space: normal;
-        text-align: center;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.1;
     }
     
     .nav-btn:last-child {
-        border-bottom: none;
-        border-radius: 0 0 var(--radius-md) var(--radius-md);
-    }
-    
-    .nav-btn:first-child {
-        border-radius: var(--radius-md) var(--radius-md) 0 0;
+        border-right: none;
     }
     
     .nav-btn.active {
-        border-bottom-color: var(--primary-green);
-        border-left: 4px solid var(--primary-green);
-        background: var(--sage-green-light);
+        background: var(--sage-green);
+        color: var(--primary-green-dark);
+        font-weight: 600;
+        border-bottom: 3px solid var(--primary-green);
     }
     
     .monthly-chart {

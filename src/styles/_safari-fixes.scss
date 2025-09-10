@@ -5,8 +5,8 @@
 /* Disable iOS Safari bounce effect and zoom */
 html, body {
     -webkit-overflow-scrolling: touch;
-    overflow-scrolling: touch;
     -webkit-user-select: none;
+    user-select: none;
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -213,35 +213,82 @@ button:focus {
         top: -16px !important;
     }
     
-    /* Fix navigation spacing on very small screens */
+    /* Fix navigation for small Safari screens */
     .navigation {
         margin-bottom: var(--spacing-md);
         border-radius: var(--radius-md);
-        flex-direction: column;
+        flex-direction: row;
+        overflow: hidden;
+        display: flex;
+        width: 100%;
     }
     
     .nav-btn {
-        padding: var(--spacing-md) var(--spacing-lg);
-        font-size: var(--font-size-base);
-        min-height: 44px; /* iOS minimum touch target */
-        border-bottom: 1px solid var(--sage-green-light);
+        border-right: 1px solid var(--sage-green-light);
         border-radius: 0;
+        padding: var(--spacing-sm) 4px;
+        min-height: 44px;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.1;
+        text-align: center;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        position: relative;
+    }
+    
+    /* Use shorter text on very small screens */
+    @media (max-width: 360px) {
+        .nav-btn {
+            font-size: 0.65rem;
+            padding: var(--spacing-sm) 2px;
+        }
+        
+        .nav-btn:nth-child(1)::after { content: "Wprow."; }
+        .nav-btn:nth-child(2)::after { content: "Stats"; }
+        .nav-btn:nth-child(3)::after { content: "Ustaw."; }
+        
+        .nav-btn::after {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .nav-btn {
+            text-indent: -9999px;
+            color: transparent;
+        }
+        
+        .nav-btn::after {
+            text-indent: 0;
+            color: var(--eucalyptus);
+        }
+        
+        .nav-btn.active::after {
+            color: var(--primary-green-dark);
+        }
     }
     
     .nav-btn:last-child {
-        border-bottom: none;
+        border-right: none;
     }
     
     .nav-btn.active {
-        border-left: 4px solid var(--primary-green);
-        background: var(--sage-green-light);
+        background: var(--sage-green);
+        color: var(--primary-green-dark);
+        font-weight: 600;
+        border-bottom: 3px solid var(--primary-green);
     }
 }
 
 /* Fix for touch scroll performance */
 .panel {
     -webkit-overflow-scrolling: touch;
-    overflow-scrolling: touch;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
 }
