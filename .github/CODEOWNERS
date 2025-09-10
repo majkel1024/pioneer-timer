@@ -1,0 +1,8 @@
+# Global code owner
+* @majkel1024
+
+# Specific directories
+/.github/ @majkel1024
+/src/ @majkel1024
+package.json @majkel1024
+angular.json @majkel1024

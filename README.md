@@ -185,7 +185,27 @@ Projekt udostępniony na licencji MIT.
 
 ## 🤝 Wkład w rozwój
 
-Zapraszamy do współtworzenia projektu! Sprawdź nasze issues i prześlij pull request.
+Zapraszamy do współtworzenia projektu! 
+
+### 🐛 Zgłaszanie błędów
+- Sprawdź [Issues](https://github.com/majkel1024/pioneer-timer/issues)
+- Użyj szablonu "Bug Report"
+
+### 💡 Propozycje funkcjonalności  
+- Użyj szablonu "Feature Request"
+- Opisz szczegółowo dlaczego funkcjonalność jest potrzebna
+
+### 🔧 Pull Requests
+- **Wymagane**: Wcześniejsze omówienie w Issues
+- Fork → Branch → Implementacja → PR
+- Sprawdź [CONTRIBUTING.md](./CONTRIBUTING.md) dla szczegółów
+
+**Aktualne potrzeby:**
+- 📱 Progressive Web App (PWA) 
+- 📊 Dodatkowe wykresy
+- 🌍 Internacjonalizacja
+- ♿ Accessibility
+- 🧪 Testy jednostkowe
 
 ---
 

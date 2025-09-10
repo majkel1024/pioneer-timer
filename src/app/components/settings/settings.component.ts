@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PioneerTimerService } from '../../services/pioneer-timer.service';
 import { Settings, HourType } from '../../models';
@@ -93,6 +93,8 @@ import { DataManagementComponent } from './data/data-management.component';
   `]
 })
 export class SettingsComponent implements OnInit {
+  private pioneerService = inject(PioneerTimerService);
+
   @Output() showHelp = new EventEmitter<void>();
   
   yearlyGoal = 600;
@@ -100,8 +102,6 @@ export class SettingsComponent implements OnInit {
   isExporting = false;
   
   private settings: Settings | null = null;
-
-  constructor(private pioneerService: PioneerTimerService) {}
 
   ngOnInit(): void {
     this.loadSettings();
@@ -141,7 +141,7 @@ export class SettingsComponent implements OnInit {
       };
       await this.pioneerService.updateSettings(updatedSettings);
       this.showMessage('Cel godzinowy został zaktualizowany.', 'success');
-    } catch (error) {
+    } catch {
       this.showMessage('Błąd podczas zapisywania ustawień.', 'error');
     }
   }
@@ -185,7 +185,7 @@ export class SettingsComponent implements OnInit {
         ]
       };
       await this.pioneerService.updateSettings(updatedSettings);
-    } catch (error) {
+    } catch {
       this.showMessage('Błąd podczas zapisywania typów godzin.', 'error');
     }
   }
@@ -195,7 +195,7 @@ export class SettingsComponent implements OnInit {
     try {
       await this.pioneerService.exportData();
       this.showMessage('Dane zostały wyeksportowane.', 'success');
-    } catch (error) {
+    } catch {
       this.showMessage('Błąd podczas eksportowania danych.', 'error');
     } finally {
       this.isExporting = false;
@@ -211,7 +211,7 @@ export class SettingsComponent implements OnInit {
       try {
         await this.pioneerService.importData(file);
         this.showMessage('Dane zostały zaimportowane pomyślnie!', 'success');
-      } catch (error) {
+      } catch {
         this.showMessage('Błąd podczas importowania pliku.', 'error');
       }
     }
@@ -226,7 +226,7 @@ export class SettingsComponent implements OnInit {
         try {
           await this.pioneerService.clearAllData();
           this.showMessage('Wszystkie dane zostały usunięte.', 'success');
-        } catch (error) {
+        } catch {
           this.showMessage('Błąd podczas usuwania danych.', 'error');
         }
       }

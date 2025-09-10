@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { DatabaseService } from './database.service';
-import { ServiceEntry, Settings, MonthlyData, ServiceYearData, DailyRequirement, HourType } from '../models';
+import { ServiceEntry, Settings, MonthlyData, ServiceYearData, DailyRequirement } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PioneerTimerService {
+  private db = inject(DatabaseService);
+
   private settingsSubject = new BehaviorSubject<Settings | null>(null);
   private entriesSubject = new BehaviorSubject<ServiceEntry[]>([]);
 
   public settings$ = this.settingsSubject.asObservable();
   public entries$ = this.entriesSubject.asObservable();
 
-  constructor(private db: DatabaseService) {
+  constructor() {
     this.loadInitialData();
   }
 
@@ -127,7 +129,7 @@ export class PioneerTimerService {
   // Statistics calculations
   getServiceYearHours(serviceYear: number, entries: ServiceEntry[], typeFilter?: string): ServiceYearData {
     let totalHours = 0;
-    const breakdown: { [typeId: string]: number } = {};
+    const breakdown: Record<string, number> = {};
 
     entries.forEach(entry => {
       const date = new Date(entry.date);
@@ -218,8 +220,8 @@ export class PioneerTimerService {
     return totalCountable;
   }
 
-  getMonthBreakdown(year: number, month: number, entries: ServiceEntry[]): { [typeId: string]: number } {
-    const breakdown: { [typeId: string]: number } = {};
+  getMonthBreakdown(year: number, month: number, entries: ServiceEntry[]): Record<string, number> {
+    const breakdown: Record<string, number> = {};
     
     entries.forEach(entry => {
       const date = new Date(entry.date);

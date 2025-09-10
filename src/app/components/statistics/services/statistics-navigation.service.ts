@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { PioneerTimerService } from '../../../services/pioneer-timer.service';
 
@@ -28,8 +28,9 @@ export class StatisticsNavigationService {
   });
 
   navigationState$ = this.navigationStateSubject.asObservable();
+  private pioneerService = inject(PioneerTimerService);
 
-  constructor(private pioneerService: PioneerTimerService) {
+  constructor() {
     // Initialize with current service year
     const today = new Date();
     const currentServiceYear = this.pioneerService.getServiceYear(today);

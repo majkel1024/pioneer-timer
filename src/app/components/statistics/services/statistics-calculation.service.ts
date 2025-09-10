@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { PioneerTimerService } from '../../../services/pioneer-timer.service';
 import { NavigationState, StatisticsTargets } from './statistics-navigation.service';
 
@@ -7,7 +7,7 @@ import { NavigationState, StatisticsTargets } from './statistics-navigation.serv
 })
 export class StatisticsCalculationService {
 
-  constructor(private pioneerService: PioneerTimerService) {}
+  private pioneerService = inject(PioneerTimerService);
 
   calculateTargetsAndDifferences(
     state: NavigationState,

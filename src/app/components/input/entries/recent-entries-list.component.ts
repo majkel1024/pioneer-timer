@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServiceEntry } from '../../../models';
 import { PioneerTimerService } from '../../../services/pioneer-timer.service';
@@ -71,7 +71,7 @@ export class RecentEntriesListComponent implements OnInit, OnChanges {
   currentDate = new Date();
   filteredEntries: ServiceEntry[] = [];
 
-  constructor(private pioneerService: PioneerTimerService) {}
+  private pioneerService = inject(PioneerTimerService);
 
   ngOnInit(): void {
     this.filterEntriesForCurrentMonth();

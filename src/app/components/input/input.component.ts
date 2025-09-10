@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PioneerTimerService } from '../../services/pioneer-timer.service';
 import { FormStateService, FormState } from '../../services/form-state.service';
 import { ToastService } from '../../services/toast.service';
-import { ServiceEntry, Settings } from '../../models';
+import { ServiceEntry, HourType } from '../../models';
 import { DateSelectorComponent } from './form/date-selector.component';
 import { HourTypeSelectorComponent } from './form/hour-type-selector.component';
 import { TimeInputComponent, TimeValue } from './form/time-input.component';
@@ -69,6 +69,10 @@ import { RecentEntriesListComponent } from './entries/recent-entries-list.compon
   `
 })
 export class InputComponent implements OnInit {
+  private pioneerService = inject(PioneerTimerService);
+  private formStateService = inject(FormStateService);
+  private toastService = inject(ToastService);
+
   formData: FormState = {
     date: '',
     type: 'service',
@@ -78,15 +82,9 @@ export class InputComponent implements OnInit {
     isDirty: false
   };
 
-  hourTypes: any[] = [];
+  hourTypes: HourType[] = [];
   recentEntries: ServiceEntry[] = [];
   isLoading = false;
-
-  constructor(
-    private pioneerService: PioneerTimerService,
-    private formStateService: FormStateService,
-    private toastService: ToastService
-  ) {}
 
   ngOnInit(): void {
     this.loadSettings();

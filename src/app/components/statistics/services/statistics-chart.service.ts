@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { PioneerTimerService } from '../../../services/pioneer-timer.service';
 import { ServiceEntry } from '../../../models';
 import { MonthlyChartData } from '../charts/monthly-chart.component';
@@ -8,7 +8,7 @@ import { MonthlyChartData } from '../charts/monthly-chart.component';
 })
 export class StatisticsChartService {
 
-  constructor(private pioneerService: PioneerTimerService) {}
+  private pioneerService = inject(PioneerTimerService);
 
   generateMonthlyChartData(serviceYear: number, entries: ServiceEntry[]): MonthlyChartData[] {
     const months = [

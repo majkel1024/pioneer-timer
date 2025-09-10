@@ -1,0 +1,53 @@
+name: Bug Report
+description: Zgłoś błąd w aplikacji
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dziękujemy za zgłoszenie błędu! Pomoże nam to ulepszyć aplikację.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Co się stało?
+      description: Opisz szczegółowo jaki błąd wystąpił
+      placeholder: Opisz problem...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Kroki do odtworzenia
+      description: Jak możemy odtworzyć ten błąd?
+      placeholder: |
+        1. Przejdź do...
+        2. Kliknij na...
+        3. Wystąpi błąd...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: Przeglądarka
+      description: W jakiej przeglądarce wystąpił błąd?
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Inne
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Sprawdziłem
+      description: Przed zgłoszeniem błędu sprawdź
+      options:
+        - label: Sprawdziłem czy problem nie był już zgłaszany
+          required: true

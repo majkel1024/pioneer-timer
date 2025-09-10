@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PioneerTimerService } from './services/pioneer-timer.service';
@@ -60,7 +60,7 @@ import { ToastContainerComponent } from './components/toast/toast-container.comp
 
     <app-help-modal
       [isVisible]="isHelpModalVisible"
-      (close)="closeHelpModal()"
+      (modalClose)="closeHelpModal()"
       (dontShowAgainChanged)="onDontShowAgainChanged($event)">
     </app-help-modal>
 
@@ -73,16 +73,14 @@ import { ToastContainerComponent } from './components/toast/toast-container.comp
   styleUrls: ['../styles.scss']
 })
 export class AppComponent implements OnInit {
+  private pioneerService = inject(PioneerTimerService);
+  private formStateService = inject(FormStateService);
+  private userPreferencesService = inject(UserPreferencesService);
+
   currentPanel = 'statistics';
   message = '';
   messageType = '';
   isHelpModalVisible = false;
-
-  constructor(
-    private pioneerService: PioneerTimerService,
-    private formStateService: FormStateService,
-    private userPreferencesService: UserPreferencesService
-  ) {}
 
   ngOnInit(): void {
     // Pokaż modal pomocy przy pierwszym uruchomieniu

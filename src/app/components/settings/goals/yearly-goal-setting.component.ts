@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
   `
 })
 export class YearlyGoalSettingComponent {
-  @Input() yearlyGoal: number = 600;
+  @Input() yearlyGoal = 600;
   @Output() goalChange = new EventEmitter<number>();
 
   onGoalChange(event: Event): void {

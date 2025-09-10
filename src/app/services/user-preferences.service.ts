@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 export class UserPreferencesService {
   private readonly HELP_MODAL_KEY = 'pioneer-timer-help-modal-shown';
 
-  constructor() {}
-
   hasSeenHelpModal(): boolean {
     return localStorage.getItem(this.HELP_MODAL_KEY) === 'true';
   }

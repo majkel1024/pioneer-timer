@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PioneerTimerService } from '../../../services/pioneer-timer.service';
 
@@ -69,8 +69,7 @@ export class ComparisonStatsComponent {
   };
 
   Math = Math;
-
-  constructor(private pioneerService: PioneerTimerService) {}
+  private pioneerService = inject(PioneerTimerService);
 
   formatTime(decimal: number): string {
     return this.pioneerService.formatTime(decimal);

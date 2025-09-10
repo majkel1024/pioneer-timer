@@ -29,7 +29,7 @@ export interface MonthlyData {
 
 export interface ServiceYearData {
   totalHours: number;
-  breakdown: { [typeId: string]: number };
+  breakdown: Record<string, number>;
 }
 
 export interface DailyRequirement {

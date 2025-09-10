@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
   `
 })
 export class DateSelectorComponent {
-  @Input() selectedDate: string = '';
+  @Input() selectedDate = '';
   @Output() dateChange = new EventEmitter<string>();
 
   onDateChange(event: Event): void {

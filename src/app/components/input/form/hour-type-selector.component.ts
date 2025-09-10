@@ -26,7 +26,7 @@ import { HourType } from '../../../models';
 })
 export class HourTypeSelectorComponent {
   @Input() hourTypes: HourType[] = [];
-  @Input() selectedType: string = '';
+  @Input() selectedType = '';
   @Output() typeChange = new EventEmitter<string>();
 
   onTypeChange(event: Event): void {

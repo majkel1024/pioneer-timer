@@ -1,0 +1,34 @@
+name: Feature Request
+description: Zaproponuj nową funkcjonalność
+title: "[FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dziękujemy za propozycję! Pomogą nam one rozwijać aplikację.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Opis funkcjonalności
+      description: Opisz szczegółowo jaką funkcjonalność chciałbyś zobaczyć
+      placeholder: Chciałbym żeby aplikacja...
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-needed
+    attributes:
+      label: Dlaczego to potrzebne?
+      description: Jaki problem rozwiąże ta funkcjonalność?
+      placeholder: To pomoże ponieważ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Dodatkowe informacje
+      description: Czy masz pomysły jak to mogłoby działać?
+      placeholder: Opcjonalnie...

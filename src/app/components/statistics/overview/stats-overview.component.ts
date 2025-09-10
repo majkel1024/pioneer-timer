@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MonthlyData } from '../../../models';
 import { PioneerTimerService } from '../../../services/pioneer-timer.service';
@@ -131,8 +131,7 @@ export class StatsOverviewComponent {
 
   Math = Math;
   monthlyGoalInHours = 50; // 50 godzin
-
-  constructor(private pioneerService: PioneerTimerService) {}
+  private pioneerService = inject(PioneerTimerService);
 
   formatTime(minutes: number): string {
     return this.pioneerService.formatTime(minutes);

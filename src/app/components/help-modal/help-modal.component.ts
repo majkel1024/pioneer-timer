@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="modal-overlay" *ngIf="isVisible" (click)="closeModal()">
-      <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-overlay" *ngIf="isVisible" (click)="closeModal()" (keydown.escape)="closeModal()" tabindex="0">
+      <div class="modal-content" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()" tabindex="0">>
         <div class="modal-header">
           <h2>💡 Jak działa Pioneer Timer?</h2>
           <button class="close-btn" (click)="closeModal()" aria-label="Zamknij">×</button>
@@ -267,14 +267,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class HelpModalComponent {
   @Input() isVisible = false;
-  @Output() close = new EventEmitter<void>();
+  @Output() modalClose = new EventEmitter<void>();
   @Output() dontShowAgainChanged = new EventEmitter<boolean>();
 
   dontShowAgain = false;
 
   closeModal(): void {
     this.isVisible = false;
-    this.close.emit();
+    this.modalClose.emit();
   }
 
   onDontShowAgainChange(): void {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PioneerTimerService } from '../../../services/pioneer-timer.service';
 
@@ -22,13 +22,12 @@ import { PioneerTimerService } from '../../../services/pioneer-timer.service';
   `
 })
 export class ProgressBarComponent {
-  @Input() goalProgress: number = 0;
-  @Input() currentYearCountable: number = 0;
-  @Input() yearlyGoal: number = 600;
+  @Input() goalProgress = 0;
+  @Input() currentYearCountable = 0;
+  @Input() yearlyGoal = 600;
 
   Math = Math;
-
-  constructor(private pioneerService: PioneerTimerService) {}
+  private pioneerService = inject(PioneerTimerService);
 
   formatTime(decimal: number): string {
     return this.pioneerService.formatTime(decimal);

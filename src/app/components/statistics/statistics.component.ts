@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subject, combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -113,13 +113,11 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   private entries: ServiceEntry[] = [];
   private settings: Settings | null = null;
 
-  constructor(
-    private pioneerService: PioneerTimerService,
-    private navigationService: StatisticsNavigationService,
-    private calculationService: StatisticsCalculationService,
-    private textService: StatisticsTextService,
-    private chartService: StatisticsChartService
-  ) {}
+  private pioneerService = inject(PioneerTimerService);
+  private navigationService = inject(StatisticsNavigationService);
+  private calculationService = inject(StatisticsCalculationService);
+  private textService = inject(StatisticsTextService);
+  private chartService = inject(StatisticsChartService);
 
   ngOnInit(): void {
     // Subscribe to navigation state changes

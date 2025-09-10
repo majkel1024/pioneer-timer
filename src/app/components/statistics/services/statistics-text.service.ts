@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { PioneerTimerService } from '../../../services/pioneer-timer.service';
-import { ServiceEntry, Settings, MonthlyData } from '../../../models';
+import { ServiceEntry } from '../../../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatisticsTextService {
 
-  constructor(private pioneerService: PioneerTimerService) {}
+  private pioneerService = inject(PioneerTimerService);
 
   getYearBreakdownText(serviceYear: number, entries: ServiceEntry[]): string {
     const yearData = this.pioneerService.getServiceYearHours(serviceYear, entries);

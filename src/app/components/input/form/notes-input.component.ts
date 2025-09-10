@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
   `
 })
 export class NotesInputComponent {
-  @Input() notes: string = '';
+  @Input() notes = '';
   @Output() notesChange = new EventEmitter<string>();
 
   onNotesChange(event: Event): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ToastService, ToastMessage } from '../../services/toast.service';
@@ -143,7 +143,7 @@ export class ToastContainerComponent implements OnInit, OnDestroy {
   toasts: ToastMessage[] = [];
   private subscription?: Subscription;
 
-  constructor(private toastService: ToastService) {}
+  private toastService = inject(ToastService);
 
   ngOnInit(): void {
     this.subscription = this.toastService.toasts$.subscribe(toasts => {
