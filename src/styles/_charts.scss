@@ -43,16 +43,25 @@
     grid-template-columns: repeat(12, 1fr);
     gap: var(--spacing-sm);
     margin-bottom: 10px;
+    justify-items: center;
+    align-items: end;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .month-bar {
     height: 150px;
+    width: 100%;
     background-color: #e9ecef;
     border-radius: 4px;
     position: relative;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .month-fills {

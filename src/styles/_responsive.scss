@@ -13,24 +13,19 @@
     }
     
     .navigation {
-        flex-direction: column;
-        border-radius: 0;
+        flex-direction: row; /* Keep horizontal on tablets */
+        border-radius: var(--radius-md);
+        margin-bottom: var(--spacing-lg);
+        overflow: hidden;
     }
     
     .nav-btn {
-        border-bottom: 1px solid var(--sage-green-light);
         border-radius: 0;
-        padding: var(--spacing-md) 20px;
-    }
-    
-    .nav-btn:last-child {
-        border-bottom: none;
-    }
-    
-    .nav-btn.active {
-        border-bottom-color: var(--primary-green);
-        border-left: 4px solid var(--primary-green);
-        background: var(--sage-green-light);
+        padding: var(--spacing-md) var(--spacing-sm);
+        min-height: 50px;
+        font-size: var(--font-size-small);
+        flex: 1;
+        white-space: nowrap;
     }
     
     .actions {
@@ -49,12 +44,16 @@
     }
     
     .monthly-chart {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
         gap: var(--spacing-sm);
+        justify-items: center;
+        align-items: end;
     }
     
     .month-bar {
         height: 100px;
+        width: 100%;
+        max-width: 70px;
     }
     
     .panel {
@@ -89,6 +88,7 @@
     .danger-btn {
         padding: 10px var(--spacing-md);
         font-size: var(--font-size-small);
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     header h1 {
@@ -99,9 +99,46 @@
         grid-template-columns: 1fr;
     }
     
+    /* Vertical navigation for very small screens */
+    .navigation {
+        flex-direction: column;
+        border-radius: var(--radius-md);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .nav-btn {
+        border-bottom: 1px solid var(--sage-green-light);
+        border-radius: 0;
+        padding: var(--spacing-md) var(--spacing-lg);
+        min-height: 44px;
+        font-size: var(--font-size-base);
+        white-space: normal;
+        text-align: center;
+    }
+    
+    .nav-btn:last-child {
+        border-bottom: none;
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+    
+    .nav-btn:first-child {
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+    
+    .nav-btn.active {
+        border-bottom-color: var(--primary-green);
+        border-left: 4px solid var(--primary-green);
+        background: var(--sage-green-light);
+    }
+    
     .monthly-chart {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
         gap: var(--spacing-xs);
+    }
+    
+    .month-bar {
+        height: 80px;
+        max-width: 50px;
     }
     
     .month-table th,

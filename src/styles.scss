@@ -28,5 +28,8 @@
 // 7. Animations
 @use 'styles/animations';
 
-// 8. Responsive design (always last)
+// 8. Safari iOS specific fixes
+@use 'styles/safari-fixes';
+
+// 9. Responsive design (always last)
 @use 'styles/responsive';

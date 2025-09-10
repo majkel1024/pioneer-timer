@@ -84,4 +84,27 @@
     .chart-title {
         font-size: 1.1rem;
     }
+    
+    /* Better grid layout for mobile Safari */
+    .monthly-chart {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
+        gap: var(--spacing-sm) !important;
+        justify-items: center;
+        align-items: end;
+        padding: var(--spacing-sm);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-content {
+        height: 200px;
+    }
+    
+    .monthly-chart {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)) !important;
+        gap: var(--spacing-xs) !important;
+    }
 }
