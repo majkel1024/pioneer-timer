@@ -1,7 +1,7 @@
 {
   "name": "Pioneer Timer - Licznik godzin służby",
   "short_name": "Pioneer Timer",
-  "description": "Aplikacja do liczenia godzin służby pionierskiej z eleganckim designem",
+  "description": "Aplikacja do liczenia godzin służby pionierskiej",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#2d5a27",
