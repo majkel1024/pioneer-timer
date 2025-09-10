@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Animations and Keyframes
+   ========================================================================== */
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.98); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shimmer {
+    0% { 
+        transform: translateX(-120%); 
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.7;
+    }
+    15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0.7;
+    }
+    100% { 
+        transform: translateX(120%); 
+        opacity: 0;
+    }
+}

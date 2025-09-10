@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Statistics Components - Modular SCSS Structure
+   ========================================================================== */
+
+/* Service Year Header */
+@use '_service-year';
+
+/* Card Layout and Navigation */
+@use '_stat-cards';
+@use '_navigation';
+
+/* Overview Components */
+@use 'overview/_stats-overview';
+@use 'overview/_target-comparison';
+@use 'overview/_expected-today';
+@use 'overview/_daily-requirements';
+
+/* Progress Components */
+@use 'progress/_progress-bars';
+@use 'progress/_comparison-stats';
+
+/* Chart Components */
+@use 'charts/_monthly-chart';

@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Daily Requirements Section
+   ========================================================================== */
+
+.daily-requirements {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--sage-green-light);
+    box-shadow: var(--shadow-light);
+}
+
+.daily-requirements h3 {
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--eucalyptus-dark);
+    text-align: center;
+}
+
+.daily-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.daily-stat {
+    text-align: center;
+    padding: 20px;
+    background: var(--warm-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--sage-green-light);
+    transition: var(--transition-smooth);
+}
+
+.daily-stat:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.daily-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--eucalyptus);
+    margin-bottom: 10px;
+}
+
+.daily-value {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-normal);
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-sm);
+}
+
+.daily-help {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-relaxed);
+    color: var(--muted-clay);
+    font-style: italic;
+}

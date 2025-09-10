@@ -1,0 +1,205 @@
+/* ==========================================================================
+   Input Panel Components
+   ========================================================================== */
+
+/* Input sections */
+.input-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.date-selector,
+.hour-type-selector,
+.hours-input,
+.notes-input {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Hour types management */
+.hour-types-section {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--sage-green-light);
+}
+
+.hour-types-section h3 {
+    margin-bottom: var(--spacing-md);
+    color: var(--eucalyptus-dark);
+}
+
+.hour-type-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: var(--cream);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--sage-green-light);
+    transition: var(--transition-smooth);
+}
+
+.hour-type-item:hover {
+    background: var(--soft-beige);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-light);
+}
+
+.hour-type-name {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--sage-green-light);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    background: var(--warm-white);
+    color: var(--primary-green-dark);
+    transition: var(--transition-smooth);
+}
+
+.hour-type-name:disabled {
+    background: var(--soft-beige);
+    color: var(--muted-clay);
+    cursor: not-allowed;
+}
+
+.hour-type-name:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+}
+
+.hour-type-info {
+    font-size: 0.9rem;
+    color: var(--eucalyptus);
+    min-width: 120px;
+    font-weight: 500;
+}
+
+/* Recent entries */
+.recent-entries {
+    border-top: 1px solid var(--sage-green-light);
+    padding-top: 28px;
+}
+
+.recent-entries-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.recent-entries h3 {
+    margin: 0;
+    color: var(--eucalyptus-dark);
+}
+
+.month-navigation {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.nav-btn {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--sage-green-light);
+    background: var(--warm-white);
+    color: var(--primary-green-dark);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: var(--primary-green);
+    color: var(--white);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+.nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.entry-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: 20px;
+    margin-bottom: var(--spacing-sm);
+    background: var(--cream);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-green);
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-light);
+}
+
+.entry-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.entry-hours {
+    font-size: var(--font-size-large);
+    font-weight: 600;
+    color: var(--eucalyptus);
+    text-align: right;
+    min-width: 60px;
+}
+
+.entry-item:hover {
+    background: var(--soft-beige);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+.entry-item.new {
+    animation: slideIn 0.5s ease;
+}
+
+.entry-date {
+    font-weight: 500;
+    color: var(--primary-green-dark);
+    font-size: var(--font-size-base);
+}
+
+.entry-type {
+    font-size: var(--font-size-xs);
+    color: var(--primary-green);
+    font-weight: 500;
+    background: var(--sage-green-light);
+    padding: 2px 6px;
+    border-radius: 3px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.entry-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .entry-item {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+        text-align: left;
+    }
+    
+    .entry-hours {
+        text-align: left;
+        font-size: var(--font-size-base);
+        order: -1;
+    }
+    
+    .entry-actions {
+        justify-content: flex-start;
+    }
+}

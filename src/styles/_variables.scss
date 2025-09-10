@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Variables - Boho Green Design System
+   ========================================================================== */
+
+:root {
+    /* Boho Green Palette */
+    --primary-green: #4a6741;
+    --primary-green-light: #6b8a5a;
+    --primary-green-dark: #2d4025;
+    
+    --sage-green: #9caf88;
+    --sage-green-light: #b8c9a8;
+    --sage-green-dark: #7a9466;
+    
+    --eucalyptus: #52796f;
+    --eucalyptus-light: #6b9688;
+    --eucalyptus-dark: #3d5a52;
+    
+    --cream: #f7f5f3;
+    --warm-white: #fefcfa;
+    --soft-beige: #e8e2d5;
+    
+    --forest-shadow: #2f3e2a;
+    --muted-clay: #a8968d;
+    --muted-clay-light: #c5b5a8;
+    --dusty-rose: #d4b5a0;
+    --muted-burgundy: #6b4c57;
+    --warning-orange: #ff9800;
+    
+    /* Status colors */
+    --success-green: #2e7d32;
+    --behind-burgundy: #9b2226;
+    
+    /* Chart colors - subtle and elegant */
+    --chart-service: var(--primary-green);
+    --chart-service-light: var(--eucalyptus);
+    --chart-other: var(--sage-green);
+    --chart-other-light: var(--sage-green-light);
+    --chart-over-limit: var(--muted-clay);
+    --chart-over-limit-light: var(--dusty-rose);
+    
+    /* Material shadows */
+    --shadow-light: 0 2px 8px rgba(74, 103, 65, 0.1);
+    --shadow-medium: 0 4px 16px rgba(74, 103, 65, 0.15);
+    --shadow-heavy: 0 8px 24px rgba(74, 103, 65, 0.2);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease-out;
+    
+    /* Typography System */
+    --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+    
+    /* Font Sizes - Hierarchical Scale */
+    --font-size-xs: 0.75rem;      /* 12px - captions, labels */
+    --font-size-sm: 0.875rem;     /* 14px - secondary text */
+    --font-size-base: 1rem;       /* 16px - body text */
+    --font-size-lg: 1.125rem;     /* 18px - emphasized text */
+    --font-size-xl: 1.25rem;      /* 20px - small headings */
+    --font-size-2xl: 1.5rem;      /* 24px - headings */
+    --font-size-3xl: 2rem;        /* 32px - large values */
+    --font-size-4xl: 2.5rem;      /* 40px - hero numbers */
+    
+    /* Font Weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.6;
+    
+    /* Spacing */
+    --spacing-xs: 6px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+}

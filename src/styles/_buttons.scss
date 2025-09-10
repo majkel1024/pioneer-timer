@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Button Components
+   ========================================================================== */
+
+/* Button container */
+.actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+/* Base button styles */
+.btn,
+.primary-btn,
+.secondary-btn,
+.danger-btn,
+.edit-btn,
+.delete-btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    letter-spacing: 0.3px;
+    box-shadow: var(--shadow-light);
+}
+
+/* Primary button */
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--eucalyptus) 100%);
+    color: var(--warm-white);
+}
+
+.primary-btn:hover {
+    background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--eucalyptus-dark) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Secondary button */
+.secondary-btn {
+    background: var(--sage-green);
+    color: var(--primary-green-dark);
+    border: 2px solid var(--sage-green-dark);
+}
+
+.secondary-btn:hover {
+    background: var(--sage-green-dark);
+    color: var(--warm-white);
+    transform: translateY(-1px);
+}
+
+/* Danger button */
+.danger-btn {
+    background: var(--dusty-rose);
+    color: var(--forest-shadow);
+    border: 2px solid var(--muted-clay);
+}
+
+.danger-btn:hover {
+    background: var(--muted-clay);
+    color: var(--warm-white);
+    transform: translateY(-1px);
+}
+
+/* Small buttons */
+.edit-btn,
+.delete-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-small);
+}
+
+.edit-btn {
+    background: var(--sage-green);
+    color: var(--primary-green-dark);
+}
+
+.edit-btn:hover {
+    background: var(--sage-green-dark);
+    color: var(--warm-white);
+}
+
+.delete-btn {
+    background: var(--dusty-rose);
+    color: var(--forest-shadow);
+}
+
+.delete-btn:hover {
+    background: var(--muted-clay);
+    color: var(--warm-white);
+}

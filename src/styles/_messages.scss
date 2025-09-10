@@ -1,0 +1,25 @@
+/* ==========================================================================
+   Messages and Notifications
+   ========================================================================== */
+
+.success-message,
+.error-message {
+    padding: var(--spacing-md) 20px;
+    border-radius: var(--radius-md);
+    margin: 20px 0;
+    font-weight: 500;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-smooth);
+}
+
+.success-message {
+    background: linear-gradient(135deg, var(--sage-green-light), var(--cream));
+    color: var(--eucalyptus-dark);
+    border: 1px solid var(--sage-green);
+}
+
+.error-message {
+    background: linear-gradient(135deg, var(--muted-clay-light), var(--cream));
+    color: var(--eucalyptus-dark);
+    border: 1px solid var(--muted-clay);
+}

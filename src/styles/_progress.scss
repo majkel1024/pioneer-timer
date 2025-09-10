@@ -1,0 +1,139 @@
+/* ==========================================================================
+   Progress Components
+   ========================================================================== */
+
+/* Progress section */
+.progress-section {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: var(--warm-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--sage-green-light);
+    box-shadow: var(--shadow-light);
+}
+
+.progress-section h3 {
+    margin-bottom: 20px;
+    color: var(--eucalyptus-dark);
+    text-align: center;
+}
+
+.progress-section .progress-bar {
+    width: 100%;
+    height: 12px;
+    background: var(--sage-green-light);
+    border-radius: var(--spacing-xs);
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-section .progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--eucalyptus) 100%);
+    border-radius: var(--spacing-xs);
+    transition: width 0.5s ease;
+    width: 0%;
+    position: relative;
+}
+
+.progress-section .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    border-radius: 0 var(--spacing-xs) var(--spacing-xs) 0;
+}
+
+.progress-section .progress-info {
+    text-align: center;
+    color: var(--eucalyptus);
+    font-weight: 500;
+    font-size: var(--font-size-base);
+}
+
+/* Monthly breakdown */
+.monthly-breakdown {
+    padding: var(--spacing-lg);
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--sage-green-light);
+    box-shadow: var(--shadow-light);
+}
+
+.monthly-breakdown h3 {
+    margin-bottom: var(--spacing-lg);
+    color: var(--eucalyptus-dark);
+    text-align: center;
+}
+
+.month-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--warm-white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+.month-table th,
+.month-table td {
+    padding: var(--spacing-md) 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--sage-green-light);
+    font-size: 0.95rem;
+}
+
+.month-table th {
+    background: var(--sage-green);
+    color: var(--warm-white);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: var(--font-size-small);
+}
+
+.month-table tr:hover {
+    background: var(--sage-green-light);
+    transition: var(--transition-smooth);
+}
+
+.month-table tr:last-child td {
+    border-bottom: none;
+}
+
+.month-name {
+    color: var(--eucalyptus-dark);
+    font-weight: 500;
+}
+
+.month-hours {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.month-status {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-xl);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status-completed {
+    background: var(--sage-green-light);
+    color: var(--eucalyptus-dark);
+}
+
+.status-partial {
+    background: var(--muted-clay-light);
+    color: var(--eucalyptus);
+}
+
+.status-pending {
+    background: var(--sage-green-light);
+    color: var(--muted-clay);
+}

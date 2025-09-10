@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Statistics Cards Layout
+   ========================================================================== */
+
+.stat-card {
+    background: linear-gradient(135deg, var(--sage-green) 0%, var(--eucalyptus-light) 100%);
+    color: var(--primary-green-dark);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition-smooth);
+    border: 1px solid var(--sage-green-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-green), var(--eucalyptus));
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-heavy);
+    
+    .stat-value {
+        transform: scale(1.02);
+    }
+}
+
+/* Unified colors for both cards */
+.stat-card.monthly-summary {
+    background: linear-gradient(135deg, var(--sage-green) 0%, var(--eucalyptus-light) 100%);
+}
+
+.stat-card.yearly-summary {
+    background: linear-gradient(135deg, var(--sage-green) 0%, var(--eucalyptus-light) 100%);
+}
+
+.stat-card h3 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-green-dark);
+    text-align: center;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+.card-header h3 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}

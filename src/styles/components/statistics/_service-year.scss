@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Service Year Header
+   ========================================================================== */
+
+.current-service-year {
+    margin-bottom: 28px;
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--eucalyptus) 0%, var(--primary-green) 100%);
+    color: var(--warm-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-medium);
+}
+
+.current-service-year h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+    color: var(--warm-white);
+}
+
+.service-year-info {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    opacity: 0.9;
+}

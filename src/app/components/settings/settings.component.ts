@@ -1,97 +1,100 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { PioneerTimerService } from '../services/pioneer-timer.service';
-import { Settings, HourType } from '../models';
+import { PioneerTimerService } from '../../services/pioneer-timer.service';
+import { Settings, HourType } from '../../models';
+import { YearlyGoalSettingComponent } from './goals/yearly-goal-setting.component';
+import { HourTypesManagerComponent } from './hour-types/hour-types-manager.component';
+import { DataManagementComponent } from './data/data-management.component';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule, 
+    YearlyGoalSettingComponent,
+    HourTypesManagerComponent,
+    DataManagementComponent
+  ],
   template: `
     <h2>Ustawienia</h2>
     
     <div class="settings-section">
-      <div class="setting-item">
-        <label for="yearly-goal">Cel godzinowy na rok służbowy:</label>
-        <input 
-          type="number" 
-          id="yearly-goal" 
-          min="1" 
-          max="9999" 
-          [(ngModel)]="yearlyGoal"
-          (change)="updateYearlyGoal()">
-        <span class="setting-help">Cel na rok służbowy (01 września - 31 sierpnia)</span>
+      <div class="section-header">
+        <h3>💡 Pomoc</h3>
+        <p>Informacje o tym jak działa aplikacja</p>
       </div>
-    </div>
-
-    <div class="hour-types-section">
-      <h3>Typy godzin</h3>
-      <div class="setting-help" style="margin-bottom: 20px;">
-        Pierwszy typ to zawsze "Służba" (bez limitu miesięcznego). Inne typy mają limit 55h/miesiąc.
-      </div>
-      
-      <div class="hour-type-item">
-        <input 
-          type="text" 
-          value="Służba" 
-          disabled 
-          class="hour-type-name">
-        <span class="hour-type-info">Bez limitu</span>
-      </div>
-      
-      <div *ngFor="let hourType of additionalHourTypes; let i = index" class="hour-type-item">
-        <input 
-          type="text" 
-          [(ngModel)]="hourType.name"
-          (change)="updateHourTypeName(hourType)"
-          class="hour-type-name">
-        <span class="hour-type-info">Limit 55h/miesiąc</span>
-        <button 
-          class="delete-btn" 
-          (click)="removeHourType(hourType)">
-          Usuń
-        </button>
-      </div>
-      
-      <button 
-        class="secondary-btn" 
-        (click)="addHourType()"
-        [disabled]="additionalHourTypes.length >= 5">
-        Dodaj typ godzin
+      <button class="secondary-btn help-btn" (click)="showHelpModal()">
+        📖 Jak działa aplikacja?
       </button>
     </div>
+    
+    <app-yearly-goal-setting
+      [yearlyGoal]="yearlyGoal"
+      (goalChange)="onYearlyGoalChange($event)">
+    </app-yearly-goal-setting>
 
-    <div class="data-management">
-      <h3>Zarządzanie danymi</h3>
-      <div class="actions">
-        <button 
-          class="secondary-btn" 
-          (click)="exportData()"
-          [disabled]="isExporting">
-          {{ isExporting ? 'Eksportowanie...' : 'Eksportuj dane' }}
-        </button>
-        <button 
-          class="secondary-btn" 
-          (click)="triggerImport()">
-          Importuj dane
-        </button>
-        <button 
-          class="danger-btn" 
-          (click)="clearAllData()">
-          Wyczyść wszystkie dane
-        </button>
-      </div>
-      <input 
-        type="file" 
-        #fileInput
-        accept=".json" 
-        style="display: none;"
-        (change)="importData($event)">
-    </div>
-  `
+    <app-hour-types-manager
+      [hourTypes]="additionalHourTypes"
+      (addHourType)="addHourType()"
+      (removeHourType)="removeHourType($event)"
+      (updateHourTypeName)="updateHourTypeName($event)">
+    </app-hour-types-manager>
+
+    <app-data-management
+      (exportData)="exportData()"
+      (importData)="importData($event)"
+      (clearAllData)="clearAllData()">
+    </app-data-management>
+  `,
+  styles: [`
+    .settings-section {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+      border: 1px solid var(--sage-green-light);
+    }
+
+    .section-header h3 {
+      margin: 0 0 var(--spacing-xs) 0;
+      color: var(--primary-green-dark);
+      font-size: var(--font-size-lg);
+    }
+
+    .section-header p {
+      margin: 0 0 var(--spacing-md) 0;
+      color: var(--eucalyptus-dark);
+      font-size: var(--font-size-sm);
+      opacity: 0.9;
+    }
+
+    .help-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+
+    .secondary-btn {
+      background: var(--sage-green-light);
+      color: var(--primary-green-dark);
+      border: 1px solid var(--sage-green);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .secondary-btn:hover {
+      background: var(--sage-green);
+      transform: translateY(-1px);
+    }
+  `]
 })
 export class SettingsComponent implements OnInit {
+  @Output() showHelp = new EventEmitter<void>();
+  
   yearlyGoal = 600;
   additionalHourTypes: HourType[] = [];
   isExporting = false;
@@ -112,6 +115,20 @@ export class SettingsComponent implements OnInit {
         this.additionalHourTypes = settings.hourTypes.slice(1); // Skip the first "Służba" type
       }
     });
+  }
+
+  onYearlyGoalChange(goal: number): void {
+    this.yearlyGoal = goal;
+    this.updateYearlyGoal();
+  }
+
+  async updateHourTypeName(data: { hourType: HourType, name: string }): Promise<void> {
+    if (data.name.trim() === '') {
+      this.showMessage('Nazwa typu godzin nie może być pusta.', 'error');
+      return;
+    }
+    data.hourType.name = data.name.trim();
+    await this.saveHourTypes();
   }
 
   async updateYearlyGoal(): Promise<void> {
@@ -156,14 +173,6 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  async updateHourTypeName(hourType: HourType): Promise<void> {
-    if (hourType.name.trim() === '') {
-      this.showMessage('Nazwa typu godzin nie może być pusta.', 'error');
-      return;
-    }
-    await this.saveHourTypes();
-  }
-
   private async saveHourTypes(): Promise<void> {
     if (!this.settings) return;
 
@@ -191,11 +200,6 @@ export class SettingsComponent implements OnInit {
     } finally {
       this.isExporting = false;
     }
-  }
-
-  triggerImport(): void {
-    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-    fileInput?.click();
   }
 
   async importData(event: Event): Promise<void> {
@@ -232,5 +236,9 @@ export class SettingsComponent implements OnInit {
   private showMessage(message: string, type: 'success' | 'error'): void {
     // This would typically emit an event to the parent component
     console.log(`${type}: ${message}`);
+  }
+
+  showHelpModal(): void {
+    this.showHelp.emit();
   }
 }

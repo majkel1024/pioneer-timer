@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Current vs Target Comparison
+   ========================================================================== */
+
+.current-vs-target {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: var(--warm-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--sage-green-light);
+    box-shadow: var(--shadow-light);
+}
+
+.current-vs-target h3 {
+    margin-bottom: var(--spacing-lg);
+    color: var(--eucalyptus-dark);
+    text-align: center;
+}
+
+.comparison-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.comparison-card {
+    padding: var(--spacing-lg);
+    background: var(--cream);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--sage-green-light);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-smooth);
+}
+
+.comparison-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.comparison-card h4 {
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-green-dark);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.comparison-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-md);
+}
+
+.actual, .target {
+    flex: 1;
+    text-align: center;
+    padding: var(--spacing-sm);
+    background: var(--warm-white);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--sage-green-light);
+}
+
+.actual .label, .target .label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--eucalyptus);
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.actual .value, .target .value {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-green-dark);
+}
+
+.difference {
+    text-align: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border: 2px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.difference.positive {
+    background: linear-gradient(135deg, var(--sage-green-light), var(--cream));
+    border-color: var(--sage-green);
+    color: var(--primary-green-dark);
+}
+
+.difference.negative {
+    background: linear-gradient(135deg, rgba(155, 34, 38, 0.15), var(--cream));
+    border-color: var(--behind-burgundy);
+    color: var(--behind-burgundy);
+}
+
+.difference.neutral {
+    background: linear-gradient(135deg, var(--eucalyptus-light), var(--sage-green-light));
+    border-color: var(--eucalyptus);
+    color: var(--primary-green-dark);
+}
+
+.difference-label {
+    font-size: 0.9rem;
+}
+
+.difference-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+}

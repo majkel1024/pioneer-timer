@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Layout Components - Header, Navigation, Panels
+   ========================================================================== */
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--eucalyptus) 100%);
+    color: var(--warm-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-medium);
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--warm-white);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Navigation */
+.navigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-xl);
+    background: var(--warm-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-light);
+    overflow: hidden;
+    border: 1px solid var(--soft-beige);
+}
+
+.nav-btn {
+    flex: 1;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    background: var(--warm-white);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--eucalyptus);
+    transition: var(--transition-smooth);
+    position: relative;
+    letter-spacing: 0.3px;
+}
+
+.nav-btn:hover {
+    background: var(--sage-green-light);
+    color: var(--primary-green-dark);
+    transform: translateY(-1px);
+}
+
+.nav-btn.active {
+    background: var(--sage-green);
+    color: var(--primary-green-dark);
+    font-weight: 600;
+}
+
+.nav-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: var(--primary-green);
+    border-radius: 2px 2px 0 0;
+}
+
+/* Panels */
+.panel {
+    display: none;
+    background: var(--warm-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--soft-beige);
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel.active {
+    display: block;
+}
+
+.panel h2 {
+    color: var(--primary-green-dark);
+    margin-bottom: 28px;
+}

@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Target Comparison
+   ========================================================================== */
+
+.target-comparison {
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+.comparison-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary-green-dark);
+    opacity: 0.9;
+    margin-right: var(--spacing-xs);
+}
+
+.comparison-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+}
+
+.target-comparison.positive .comparison-value {
+    color: var(--success-green);
+}
+
+.target-comparison.negative .comparison-value {
+    color: var(--behind-burgundy);
+}
+
+.target-comparison.neutral .comparison-value {
+    color: var(--eucalyptus);
+}

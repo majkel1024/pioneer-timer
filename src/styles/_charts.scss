@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Chart Components
+   ========================================================================== */
+
+.monthly-stats-info {
+    margin-bottom: 15px;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
+.legend-color.service {
+    background: linear-gradient(135deg, var(--chart-service) 0%, var(--chart-service-light) 100%);
+}
+
+.legend-color.other {
+    background: linear-gradient(135deg, var(--chart-other) 0%, var(--chart-other-light) 100%);
+}
+
+.legend-color.over-limit {
+    background: linear-gradient(135deg, var(--chart-over-limit) 0%, var(--chart-over-limit-light) 100%);
+}
+
+.monthly-chart {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: 10px;
+}
+
+.month-bar {
+    height: 150px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.month-fills {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.month-fill {
+    width: 100%;
+    transition: height 0.5s ease;
+}
+
+.month-fill.service {
+    background: linear-gradient(0deg, var(--chart-service) 0%, var(--chart-service-light) 100%);
+}
+
+.month-fill.other {
+    background: linear-gradient(0deg, var(--chart-other) 0%, var(--chart-other-light) 100%);
+}
+
+.month-fill.over-limit {
+    background: linear-gradient(0deg, var(--chart-over-limit) 0%, var(--chart-over-limit-light) 100%);
+}
+
+.month-label {
+    position: absolute;
+    bottom: -25px;
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.month-value {
+    position: absolute;
+    top: -20px;
+    font-size: 0.7rem;
+    color: #333;
+    font-weight: 500;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}

@@ -160,22 +160,32 @@ export class PioneerTimerService {
           if (entryType === 'service') {
             serviceHours += entry.hours;
           } else {
-            // For other types, track separately
-            if (otherHours < 55) {
-              const canAdd = Math.min(entry.hours, 55 - otherHours);
-              otherHours += canAdd;
-              overLimitHours += entry.hours - canAdd;
-            } else {
-              overLimitHours += entry.hours;
-            }
+            otherHours += entry.hours;
           }
           totalHours += entry.hours;
         }
       }
     });
 
-    // For counting purposes (towards monthly goal), limit other hours to 55
-    const countableHours = serviceHours + Math.min(otherHours, 55);
+    // Oblicz godziny liczące się do statystyk zgodnie z zasadami:
+    // 1. Godziny służby zawsze się liczą (bez limitów)
+    // 2. Inne typy + służba razem maksymalnie 55h
+    // 3. Jeśli służba > 55h, to tylko służba się liczy
+    // 4. Jeśli służba <= 55h, to służba + inne (do limitu 55h razem)
+    
+    let countableHours = serviceHours; // Służba zawsze się liczy
+    let countableOtherHours = 0;
+    
+    if (serviceHours < 55) {
+      // Służba nie przekracza 55h, więc można dodać inne typy do limitu 55h
+      const remainingLimit = 55 - serviceHours;
+      countableOtherHours = Math.min(otherHours, remainingLimit);
+      countableHours = serviceHours + countableOtherHours;
+    }
+    // Jeśli służba >= 55h, countableHours = serviceHours (bez innych typów)
+    
+    // Godziny przekraczające limit to te "inne", które się nie liczyły
+    overLimitHours = otherHours - countableOtherHours;
 
     return { 
       totalHours, 
@@ -206,6 +216,20 @@ export class PioneerTimerService {
     }
 
     return totalCountable;
+  }
+
+  getMonthBreakdown(year: number, month: number, entries: ServiceEntry[]): { [typeId: string]: number } {
+    const breakdown: { [typeId: string]: number } = {};
+    
+    entries.forEach(entry => {
+      const date = new Date(entry.date);
+      if (date.getFullYear() === year && date.getMonth() === month) {
+        const typeId = entry.type || 'service';
+        breakdown[typeId] = (breakdown[typeId] || 0) + entry.hours;
+      }
+    });
+    
+    return breakdown;
   }
 
   getDailyRequirements(serviceYear: number, currentMonthCountable: number, currentYearCountable: number): DailyRequirement {

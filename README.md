@@ -1,6 +1,14 @@
 # Pioneer Timer - Licznik godzin służby pioniera
 
+[![Build and Deploy](https://github.com/majkel1024/pioneer-timer/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/majkel1024/pioneer-timer/actions/workflows/build-and-deploy.yml)
+
 Aplikacja Angular TypeScript do śledzenia godzin służby pioniera z trwałym przechowywaniem danych w przeglądarce.
+
+## 🌐 Demo online
+
+**[👉 Wypróbuj aplikację tutaj](https://majkel1024.github.io/pioneer-timer/)**
+
+Aplikacja jest automatycznie aktualizowana i publikowana na GitHub Pages przy każdym commicie.
 
 ## ✨ Funkcjonalności
 
@@ -54,11 +62,32 @@ Aplikacja Angular TypeScript do śledzenia godzin służby pioniera z trwałym p
 
 - `npm start` - Uruchomienie serwera developerskiego
 - `npm run build` - Budowanie aplikacji do produkcji
+- `npm run build:gh-pages` - Budowanie dla GitHub Pages
 - `npm run watch` - Budowanie z obserwowaniem zmian
 - `npm test` - Uruchomienie testów jednostkowych
 - `npm run lint` - Sprawdzenie jakości kodu
 
-## 📁 Struktura projektu
+## � Deployment
+
+### GitHub Pages (automatyczny)
+
+Aplikacja jest automatycznie budowana i publikowana na GitHub Pages przy każdym push do głównej gałęzi:
+
+1. **GitHub Actions** automatycznie uruchamia workflow
+2. Kod jest budowany z `npm run build:gh-pages`
+3. Artefakty są publikowane na GitHub Pages
+4. Aplikacja dostępna pod adresem: `https://majkel1024.github.io/pioneer-timer/`
+
+### Lokalny deployment
+
+```bash
+# Zbuduj aplikację dla GitHub Pages
+npm run build:gh-pages
+
+# Pliki gotowe do publikacji znajdą się w dist/pioneer-timer/
+```
+
+## �📁 Struktura projektu
 
 ```
 src/
