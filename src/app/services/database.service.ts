@@ -51,16 +51,15 @@ export class DatabaseService extends Dexie {
     await this.entries.delete(id);
   }
 
-  async upsertEntry(entry: ServiceEntry): Promise<number> {
-    const existingEntry = await this.getEntryByDate(entry.date);
-    if (existingEntry) {
-      entry.id = existingEntry.id;
-      await this.entries.put(entry);
-      return existingEntry.id!;
-    } else {
-      return await this.addEntry(entry);
-    }
+async upsertEntry(entry: ServiceEntry): Promise<number> {
+  // Jeśli wpis ma ID, to edytujemy istniejący wpis
+  if (entry.id) {
+    return await this.entries.put(entry);
+  } else {
+    // Jeśli nie ma ID, zawsze dodajemy nowy wpis (pozwalamy na wiele wpisów na dzień)
+    return await this.addEntry(entry);
   }
+}
 
   async getSettings(): Promise<Settings> {
     const settings = await this.settings.toArray();

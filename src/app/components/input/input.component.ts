@@ -79,7 +79,8 @@ export class InputComponent implements OnInit {
     hours: 0,
     minutes: 0,
     notes: '',
-    isDirty: false
+    isDirty: false,
+    editingEntryId: undefined
   };
 
   hourTypes: HourType[] = [];
@@ -175,13 +176,18 @@ export class InputComponent implements OnInit {
         timestamp: new Date().getTime()
       };
 
+      if (this.formData.editingEntryId) {
+        entry.id = this.formData.editingEntryId;
+      }
+      
       await this.pioneerService.saveEntry(entry);
       
       // Po zapisie czyścimy formularz (zachowujemy datę i typ)
       this.formStateService.updateState({
         hours: 0,
         minutes: 0,
-        notes: ''
+        notes: '',
+        editingEntryId: undefined // Czyścimy ID edycji
       });
       this.formStateService.markAsClean();
       
@@ -209,7 +215,8 @@ export class InputComponent implements OnInit {
       hours,
       minutes,
       type: entry.type || 'service',
-      notes: entry.notes || ''
+      notes: entry.notes || '',
+      editingEntryId: entry.id // Dodajemy ID edytowanego wpisu
     });
     this.formStateService.markAsClean();
     

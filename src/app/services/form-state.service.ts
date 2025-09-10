@@ -8,6 +8,7 @@ export interface FormState {
   minutes: number;
   notes: string;
   isDirty: boolean; // czy formularz został zmieniony
+  editingEntryId?: number; // ID edytowanego wpisu (jeśli edytujemy)
 }
 
 @Injectable({
@@ -20,7 +21,8 @@ export class FormStateService {
     hours: 0,
     minutes: 0,
     notes: '',
-    isDirty: false
+    isDirty: false,
+    editingEntryId: undefined
   };
 
   private formStateSubject = new BehaviorSubject<FormState>(this.defaultState);
