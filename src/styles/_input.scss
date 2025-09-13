@@ -55,6 +55,20 @@
     transition: var(--transition-smooth);
 }
 
+/* Ensure input fields don't overflow their container */
+.setting-input,
+.hour-type-name,
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .hour-type-name:disabled {
     background: var(--soft-beige);
     color: var(--muted-clay);
