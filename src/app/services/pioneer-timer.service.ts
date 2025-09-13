@@ -265,7 +265,11 @@ export class PioneerTimerService {
   }
 
   // Data management
-  async exportData(): Promise<void> {
+  /**
+   * Zwraca nazwę pliku i blob z eksportem danych (bez wywoływania pobrania)
+   * Pozwala to na przesłanie danych gdzie indziej (np. na Dysk Google).
+   */
+  async getExportBlob(): Promise<{ fileName: string; blob: Blob }> {
     try {
       const data = await this.db.exportData();
       const exportData = {
@@ -275,18 +279,25 @@ export class PioneerTimerService {
       };
 
       const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `pioneer-timer-backup-${new Date().toISOString().split('T')[0]}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      const fileName = `pioneer-timer-backup-${new Date().toISOString().split('T')[0]}.json`;
+      return { fileName, blob };
     } catch (error) {
-      console.error('Błąd podczas eksportowania danych:', error);
+      console.error('Błąd podczas tworzenia eksportu danych:', error);
       throw error;
     }
+  }
+
+  async exportData(): Promise<void> {
+    // backward-compatible: trigger local download using the new helper
+    const { fileName, blob } = await this.getExportBlob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   async importData(file: File): Promise<void> {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PioneerTimerService } from '../../services/pioneer-timer.service';
+import { saveOrShareBlob } from '../../utils/saveShare';
 import { Settings, HourType } from '../../models';
 import { YearlyGoalSettingComponent } from './goals/yearly-goal-setting.component';
 import { HourTypesManagerComponent } from './hour-types/hour-types-manager.component';
@@ -42,6 +43,7 @@ import { DataManagementComponent } from './data/data-management.component';
 
     <app-data-management
       (exportData)="exportData()"
+      (exportShare)="exportAndShare()"
       (importData)="importData($event)"
       (clearAllData)="clearAllData()">
     </app-data-management>
@@ -230,6 +232,21 @@ export class SettingsComponent implements OnInit {
           this.showMessage('Błąd podczas usuwania danych.', 'error');
         }
       }
+    }
+  }
+
+
+  async exportAndShare(): Promise<void> {
+    this.isExporting = true;
+    try {
+      const { fileName, blob } = await this.pioneerService.getExportBlob();
+      const result = await saveOrShareBlob(blob, fileName);
+      this.showMessage(`Backup: ${result}`, 'success');
+    } catch (err) {
+      console.error('Export/Share error', err);
+      this.showMessage('Błąd podczas eksportu i udostępniania.', 'error');
+    } finally {
+      this.isExporting = false;
     }
   }
 

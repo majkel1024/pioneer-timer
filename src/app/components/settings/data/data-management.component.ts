@@ -17,6 +17,12 @@ import { CommonModule } from '@angular/common';
         </button>
         <button 
           class="secondary-btn" 
+          (click)="onExportAndShare()">
+          Eksportuj i udostępnij
+        </button>
+        <!-- Google Drive option removed -->
+        <button 
+          class="secondary-btn" 
           (click)="onImportTrigger()">
           Importuj dane
         </button>
@@ -37,6 +43,8 @@ import { CommonModule } from '@angular/common';
 })
 export class DataManagementComponent {
   @Output() exportData = new EventEmitter<void>();
+  // exportToDrive removed (Google Drive integration removed)
+  @Output() exportShare = new EventEmitter<void>();
   @Output() importData = new EventEmitter<Event>();
   @Output() clearAllData = new EventEmitter<void>();
 
@@ -60,5 +68,13 @@ export class DataManagementComponent {
 
   onClearAll(): void {
     this.clearAllData.emit();
+  }
+
+  onExportToDrive(): void {
+    // removed
+  }
+
+  onExportAndShare(): void {
+    this.exportShare.emit();
   }
 }
